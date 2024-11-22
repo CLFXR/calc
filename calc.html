@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D 모델 제작 서비스 가견적 산출</title>
+    <title>3D 모델 제작 서비스 가견적 산출 계산기</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,8 +86,7 @@
 </head>
 <body>
 
-    /*<h1>가견적 산출</h1>*/
-    
+   
     <table id="productTable">
         <thead>
             <tr>
@@ -103,8 +102,34 @@
                 <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
-                        <option value='C2'>일반소파</option>
-                        <option value='C4'>1인용소파</option>
+                    <option value='C1'>거실장/TV장</option>
+                    <option value='C2'>일반소파</option>
+                    <option value='C1'>소파베드/소파스툴</option>
+                    <option value='C4'>1인용리클라이너소파</option>
+                    <option value='C3'>다인용리클라이너소파</option>
+                    <option value='C1.5'>안락의자/빈백</option>
+                    <option value='C1'>서랍/수납장/수납선반</option>
+                    <option value='C1'>책장/책꽂이</option>
+                    <option value='C1'>가벽/파티션</option>
+                    <option value='C1'>욕실수납장</option>
+                    <option value='C1'>책상</option>
+                    <option value='C4'>학생/사무용의자</option>
+                    <option value='C1'>침대/매트리스</option>
+                    <option value='C1'>화장대</option>
+                    <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
+                    <option value='C2'>비키니옷장</option>
+                    <option value='C1.5'>행거</option>
+                    <option value='C1'>식탁</option>
+                    <option value='C3'>식탁세트</option>
+                    <option value='C1'>일반의자/인테리어의자</option>
+                    <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
+                    <option value='C1'>벽거울/전신거울</option>
+                    <option value='C1.5'>탁상거울</option>
+                    <option value='C1'>러그/매트</option>
+                    <option value='C1'>그림/사진/포스터/액자</option>
+                    <option value='C1'>시계</option>
+                    <option value='C1'>냉장고/인덕션/냉정수기</option>
+                    <option value='C1.5'>TV/전기밥솥</option>
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
@@ -137,9 +162,12 @@
 
     <script>
         let prices = {
-            'C1': 80000, // 거실테이블
-            'C2': 200000, // 일반소파
-            'C4': 400000, // 1인용소파
+            'C1': 80000,
+        'C1.5': 120000,
+        'C2': 200000,
+        'C3': 300000,
+        'C4': 400000,
+        'C5': 600000,
         };
 
         function addRow() {
@@ -149,8 +177,34 @@
                 <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
-                        <option value='C2'>일반소파</option>
-                        <option value='C4'>1인용소파</option>
+                    <option value='C1'>거실장/TV장</option>
+                    <option value='C2'>일반소파</option>
+                    <option value='C1'>소파베드/소파스툴</option>
+                    <option value='C4'>1인용리클라이너소파</option>
+                    <option value='C3'>다인용리클라이너소파</option>
+                    <option value='C1.5'>안락의자/빈백</option>
+                    <option value='C1'>서랍/수납장/수납선반</option>
+                    <option value='C1'>책장/책꽂이</option>
+                    <option value='C1'>가벽/파티션</option>
+                    <option value='C1'>욕실수납장</option>
+                    <option value='C1'>책상</option>
+                    <option value='C4'>학생/사무용의자</option>
+                    <option value='C1'>침대/매트리스</option>
+                    <option value='C1'>화장대</option>
+                    <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
+                    <option value='C2'>비키니옷장</option>
+                    <option value='C1.5'>행거</option>
+                    <option value='C1'>식탁</option>
+                    <option value='C3'>식탁세트</option>
+                    <option value='C1'>일반의자/인테리어의자</option>
+                    <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
+                    <option value='C1'>벽거울/전신거울</option>
+                    <option value='C1.5'>탁상거울</option>
+                    <option value='C1'>러그/매트</option>
+                    <option value='C1'>그림/사진/포스터/액자</option>
+                    <option value='C1'>시계</option>
+                    <option value='C1'>냉장고/인덕션/냉정수기</option>
+                    <option value='C1.5'>TV/전기밥솥</option>
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
