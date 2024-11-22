@@ -181,7 +181,7 @@
 
     <script>
         let prices = {
-            'C1': 80000,   // 여러 상품군에 대해 동일한 가격을 가정
+            'C1': 80000,
             'C1.5': 120000,
             'C2': 200000,
             'C3': 300000,
@@ -208,8 +208,6 @@
                         <option value='C1'>서랍/수납장/수납선반</option>
                         <option value='C1'>책장/책꽂이</option>
                         <option value='C1'>가벽/파티션</option>
-
-```html
                         <option value='C1'>욕실수납장</option>
                         <option value='C1'>책상</option>
                         <option value='C4'>학생/사무용의자</option>
@@ -274,7 +272,7 @@
             let priceCell = row.getElementsByClassName('price')[0];
             let price = prices[selectedValue] || 0;
             priceCell.textContent = price.toLocaleString() + ' 원';
-            calculateTotal(); // 가격이 변경되면 총합도 다시 계산
+            calculateTotal(); // 가격 변경 시 총합 계산
         }
 
         function calculateTotal() {
@@ -285,7 +283,7 @@
                 let row = rows[i];
                 let optionsRow = rows[i + 1];
 
-                // 수량, 색상 추가, 사이즈 추가 입력값을 가져오고 유효성 검사
+                // 수량, 색상 추가, 사이즈 추가 입력값 가져오기
                 let quantityInput = row.getElementsByClassName('quantity')[0];
                 let quantity = parseInt(quantityInput.value) || 0;
 
