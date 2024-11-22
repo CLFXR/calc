@@ -66,8 +66,8 @@
             margin-top: 10px;
         }
 
-        input[type="number"] {
-            width: 50px; /* 충분한 너비로 변경 */
+        select {
+            width: 60px; /* 충분한 너비로 변경 */
             padding: 2px;
             font-size: 0.8em;
             text-align: center;
@@ -159,7 +159,38 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number" class="quantity" value="1" min="1" oninput="updatePrice(this); calculateTotal()">
+                    <select class="quantity" onchange="updatePrice(this); calculateTotal()">
+                        <!-- 0부터 99까지의 옵션 -->
+                        <option value="0">0</option>
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <!-- 11부터 99까지 동일하게 추가 -->
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <!-- ... 계속 26부터 99까지 추가 ... -->
+                        <option value="99">99</option>
+                    </select>
                 </td>
                 <td class="price">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
@@ -167,11 +198,73 @@
             <tr class="options-row">
                 <td colspan="4" class="additional-options">
                     <label>색상 추가:
-                        <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
+                        <select class="color-addition" onchange="calculateTotal()">
+                            <!-- 0부터 99까지의 옵션 -->
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <!-- 11부터 99까지 동일하게 추가 -->
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <!-- ... 계속 26부터 99까지 추가 ... -->
+                            <option value="99">99</option>
+                        </select>
                         (<span class="additional-cost color-cost">+0 원</span>)
                     </label>
                     <label>사이즈 추가:
-                        <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
+                        <select class="size-addition" onchange="calculateTotal()">
+                            <!-- 0부터 99까지의 옵션 -->
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <!-- 11부터 99까지 동일하게 추가 -->
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <!-- ... 계속 26부터 99까지 추가 ... -->
+                            <option value="99">99</option>
+                        </select>
                         (<span class="additional-cost size-cost">+0 원</span>)
                     </label>
                     <label>총 금액:
@@ -241,7 +334,38 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number" class="quantity" value="1" min="1" oninput="updatePrice(this); calculateTotal()">
+                    <select class="quantity" onchange="updatePrice(this); calculateTotal()">
+                        <!-- 0부터 99까지의 옵션 -->
+                        <option value="0">0</option>
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <!-- 11부터 99까지 동일하게 추가 -->
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <!-- ... 계속 추가 ... -->
+                        <option value="99">99</option>
+                    </select>
                 </td>
                 <td class="price">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
@@ -253,11 +377,73 @@
             optionsRow.innerHTML = `
                 <td colspan="4" class="additional-options">
                     <label>색상 추가:
-                        <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
+                        <select class="color-addition" onchange="calculateTotal()">
+                            <!-- 0부터 99까지의 옵션 -->
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <!-- 11부터 99까지 동일하게 추가 -->
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <!-- ... 계속 추가 ... -->
+                            <option value="99">99</option>
+                        </select>
                         (<span class="additional-cost color-cost">+0 원</span>)
                     </label>
                     <label>사이즈 추가:
-                        <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
+                        <select class="size-addition" onchange="calculateTotal()">
+                            <!-- 0부터 99까지의 옵션 -->
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <!-- 11부터 99까지 동일하게 추가 -->
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <!-- ... 계속 추가 ... -->
+                            <option value="99">99</option>
+                        </select>
                         (<span class="additional-cost size-cost">+0 원</span>)
                     </label>
                     <label>총 금액:
@@ -265,7 +451,7 @@
                     </label>
                 </td>
             `;
-
+            
             calculateTotal();
         }
 
@@ -289,8 +475,8 @@
             let productSelect = row.querySelector('.product-select');
             let selectedValue = productSelect.value;
             let price = prices[selectedValue] || 0;
-            let quantityInput = row.querySelector('.quantity');
-            let quantity = parseInt(quantityInput.value) || 0;
+            let quantitySelect = row.querySelector('.quantity');
+            let quantity = parseInt(quantitySelect.value) || 0;
 
             // 가격 계산
             let totalPrice = price * quantity;
@@ -310,8 +496,8 @@
 
                 if (!optionsRow) continue; // 옵션 행이 없을 경우 다음 행으로
 
-                let quantityInput = row.getElementsByClassName('quantity')[0];
-                let quantity = parseInt(quantityInput.value) || 0;
+                let quantitySelect = row.getElementsByClassName('quantity')[0];
+                let quantity = parseInt(quantitySelect.value) || 0;
 
                 let productSelect = row.getElementsByClassName('product-select')[0];
                 let selectedValue = productSelect.value;
@@ -320,11 +506,11 @@
                 // 상품군 가격 계산
                 let productTotalPrice = price * quantity;
 
-                let colorAdditionInput = optionsRow.getElementsByClassName('color-addition')[0];
-                let colorAddition = parseInt(colorAdditionInput.value) || 0;
+                let colorAdditionSelect = optionsRow.getElementsByClassName('color-addition')[0];
+                let colorAddition = parseInt(colorAdditionSelect.value) || 0;
 
-                let sizeAdditionInput = optionsRow.getElementsByClassName('size-addition')[0];
-                let sizeAddition = parseInt(sizeAdditionInput.value) || 0;
+                let sizeAdditionSelect = optionsRow.getElementsByClassName('size-addition')[0];
+                let sizeAddition = parseInt(sizeAdditionSelect.value) || 0;
 
                 // 추가 비용 계산
                 let colorCost = colorAddition * (price * 0.1);
@@ -348,6 +534,27 @@
 
         // 초기 계산 실행
         calculateTotal();
+
+        // 자동으로 0부터 99까지의 옵션을 생성하는 스크립트 (선택 사항)
+        document.addEventListener('DOMContentLoaded', function () {
+            let selectElements = document.querySelectorAll('select.quantity, select.color-addition, select.size-addition');
+
+            selectElements.forEach(function (select) {
+                // 이미 옵션이 있는 경우 생략 (예: static HTML에서 이미 추가된 경우)
+                if (select.options.length > 1) return;
+
+                for (let i = 0; i <= 99; i++) {
+                    let option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i;
+                    if ((select.classList.contains('quantity') && i === 1) ||
+                        (!select.classList.contains('quantity') && i === 0)) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                }
+            });
+        });
     </script>
 </body>
 
