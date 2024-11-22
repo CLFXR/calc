@@ -23,12 +23,12 @@
             margin-top: 20px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             background-color: #fff;
-            border-radius: 8px; /* 테이블 둥글게 */
-            overflow: hidden; /* 둥글게 하기 위한 설정 */
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         th {
-            background-color: #35C5F0; /* 헤더 색상 */
+            background-color: #35C5F0;
             color: white;
             font-weight: bold;
             padding: 10px;
@@ -38,8 +38,8 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
-            background-color: white; /* 모든 셀 흰색 배경 */
-            font-size: 0.95em; /* 기본 폰트 크기 */
+            background-color: white;
+            font-size: 0.95em;
         }
 
         .price, .total, .additional-cost {
@@ -47,12 +47,12 @@
         }
 
         .reply-row {
-            background-color: #f4f4f4; /* 일반 추가 로우 배경색 */
+            background-color: #f4f4f4;
         }
 
         .total-row td {
             font-weight: bold;
-            background-color: #35C5F0; /* 총 금액 색상 */
+            background-color: #35C5F0;
             color: white;
             text-align: right;
         }
@@ -72,7 +72,7 @@
 
         .add-row button {
             padding: 10px 20px;
-            background-color: #35C5F0; /* 버튼 색상 */
+            background-color: #35C5F0;
             color: white;
             border: none;
             border-radius: 5px;
@@ -80,7 +80,7 @@
         }
 
         .add-row button:hover {
-            background-color: #2ca1d3; /* 버튼 호버 색상 */
+            background-color: #2ca1d3;
         }
 
         .remove-row {
@@ -92,14 +92,33 @@
             font-size: 1.2em;
         }
 
-        /* 추가 - 색상 및 사이즈 추가 라벨 스타일 */
         .additional-label {
-            font-size: 0.8em; /* 폰트 크기를 더 작게 설정 */
+            font-size: 0.8em;
+        }
+
+        /* 추가 - 모바일 스타일 */
+        @media (max-width: 600px) {
+            table, td, th {
+                font-size: 0.8em;  /* 폰트 크기 조정 */
+            }
+
+            td {
+                padding: 8px; /* 셀 패딩 줄이기 */
+            }
+
+            input[type="number"] {
+                width: 40px; /* 입력 박스 크기 줄여서 가로 폭 확보 */
+            }
+
+            .add-row button {
+                padding: 8px 16px; /* 버튼 크기 조정 */
+            }
         }
     </style>
 </head>
 <body>
 
+    <h1>3D 모델 제작 서비스 가견적 산출</h1>
     <h5>Note: 실제 견적과 차이가 발생할 수 있으니 참고해 주세요.</h5>
     
     <table id="productTable">
@@ -113,7 +132,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="product-row"> <!-- 기본 옵션 행 -->
+            <tr class="product-row">
                 <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
@@ -195,7 +214,7 @@
             
             const newRow = table.insertRow();
             newRow.innerHTML = `
-                <td style="background-color: white;"> <!-- 상품군 셀 흰색 -->
+                <td style="background-color: white;">
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
                         <option value='C1'>거실장/TV장</option>
@@ -235,7 +254,7 @@
             `;
 
             const sizeColorRow = table.insertRow();
-            sizeColorRow.className = "reply-row"; // 클래스를 추가하여 스타일 지정
+            sizeColorRow.className = "reply-row"; 
             sizeColorRow.innerHTML = `
                 <td colspan="5">
                     <label class="additional-label" style="margin-right: 10px;">컬러 추가: 
@@ -255,7 +274,7 @@
         function removeRow(element) {
             const row = element.parentNode.parentNode;
             const nextRow = row.nextElementSibling;
-            nextRow.remove(); // 추가된 로우도 삭제
+            nextRow.remove();
             row.remove();
             calculateTotal();
         }
