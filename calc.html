@@ -67,11 +67,26 @@
             padding: 2px; /* 패딩 줄임 */
             font-size: 0.8em; /* 폰트 크기 조정 */
         }
+
+        .additional-options {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px; /* 여백 조정 */
+        }
+
+        .additional-options label {
+            margin-right: 5px; /* 여백 추가 */
+            font-size: 0.8em; /* 작은 폰트 크기 */
+        }
+
+        .additional-cost {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <h1>가견적 산출</h1>
+    /*<h1>가견적 산출</h1>*/
     
     <table id="productTable">
         <thead>
@@ -97,6 +112,18 @@
                 <td class="total">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             </tr>
+            <tr class="options-row">
+                <td colspan="5" class="additional-options">
+                    <label>색상 추가:
+                        <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
+                        (<span class="additional-cost color-cost">+0 원</span>)
+                    </label>
+                    <label>사이즈 추가:
+                        <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
+                        (<span class="additional-cost size-cost">+0 원</span>)
+                    </label>
+                </td>
+            </tr>
         </tbody>
     </table>
 
@@ -110,9 +137,9 @@
 
     <script>
         let prices = {
-            'C1': 80000,
-            'C2': 200000,
-            'C4': 400000,
+            'C1': 80000, // 거실테이블
+            'C2': 200000, // 일반소파
+            'C4': 400000, // 1인용소파
         };
 
         function addRow() {
@@ -131,12 +158,29 @@
                 <td class="total">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             `;
+            let optionsRow = table.insertRow();
+            optionsRow.className = "options-row";
+            optionsRow.innerHTML = `
+                <td colspan="5" class="additional-options">
+                    <label>색상 추가:
+                        <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
+                        (<span class="additional-cost color-cost">+0 원</span>)
+                    </label>
+                    <label>사이즈 추가:
+                        <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
+                        (<span class="additional-cost size-cost">+0 원</span>)
+                    </label>
+                </td>
+            `;
+
             calculateTotal();
         }
 
         function removeRow(element) {
             let row = element.parentNode.parentNode;
+            let optionsRow = row.nextElementSibling; // 옵션 행
             row.remove();
+            optionsRow.remove();
             calculateTotal();
         }
 
@@ -151,15 +195,28 @@
             let grandTotal = 0;
             let rows = document.getElementById('productTable').getElementsByTagName('tbody')[0].rows;
 
-            for (let row of rows) {
+            for (let i = 0; i < rows.length; i += 2) {
+                let row = rows[i];
+                let optionsRow = rows[i + 1];
+
                 let quantity = parseInt(row.getElementsByClassName('quantity')[0].value);
                 let productSelect = row.getElementsByClassName('product-select')[0];
                 let selectedValue = productSelect.value;
                 let price = prices[selectedValue];
 
-                let total = quantity * price;
+                let colorAddition = parseInt(optionsRow.getElementsByClassName('color-addition')[0].value);
+                let sizeAddition = parseInt(optionsRow.getElementsByClassName('size-addition')[0].value);
+
+                let colorCost = colorAddition * (price * 0.1);
+                let sizeCost = sizeAddition * (price * 0.25);
+
+                let total = (quantity * price) + colorCost + sizeCost;
+
                 row.getElementsByClassName('total')[0].textContent = total.toLocaleString() + ' 원';
                 grandTotal += total;
+
+                optionsRow.getElementsByClassName('color-cost')[0].textContent = `+${colorCost.toLocaleString()} 원`;
+                optionsRow.getElementsByClassName('size-cost')[0].textContent = `+${sizeCost.toLocaleString()} 원`;
             }
 
             document.getElementById('grandTotal').textContent = grandTotal.toLocaleString() + ' 원';
