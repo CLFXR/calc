@@ -88,6 +88,11 @@
             font-weight: bold;
         }
 
+        .additional-cost.total-cost {
+            font-weight: bold;
+            font-size: 1.2em; /* 글자 크기를 키움 */
+        }
+
         /* 모바일 및 슬랙 임베드 최적화 */
         @media (max-width: 500px) {
             .additional-options {
@@ -157,15 +162,15 @@
             </tr>
             <tr class="options-row">
                 <td colspan="4" class="additional-options">
-                    <label>색상 추가:
+                    <label>색상 추가(수량):
                         <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost color-cost">+0 원</span>)
                     </label>
-                    <label>사이즈 추가:
+                    <label>사이즈 추가(수량):
                         <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost size-cost">+0 원</span>)
                     </label>
-                    <label>총 금액:
+                    <label>상품 금액:
                         <span class="additional-cost total-cost">0 원</span>
                     </label>
                 </td>
