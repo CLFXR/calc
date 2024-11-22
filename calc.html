@@ -20,7 +20,7 @@
         }
 
         table {
-            width: 90%;
+            width: 100%;
             border-collapse: collapse;
             margin-top: 5px;
         }
@@ -63,7 +63,7 @@
         }
 
         input[type="number"] {
-            width: 30px; /* 입력 박스 사이즈 줄임 */
+            width: 40px; /* 입력 박스 사이즈 */
             padding: 2px; /* 패딩 줄임 */
             font-size: 0.8em; /* 폰트 크기 조정 */
         }
@@ -86,14 +86,12 @@
 </head>
 <body>
 
-   
     <table id="productTable">
         <thead>
             <tr>
                 <th>상품군</th>
                 <th>수량</th>
-                <th>개당 가격</th>
-                <th>상품 가격</th>
+                <th>옵션 가격</th>
                 <th>삭제</th>
             </tr>
         </thead>
@@ -102,43 +100,42 @@
                 <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
-                    <option value='C1'>거실장/TV장</option>
-                    <option value='C2'>일반소파</option>
-                    <option value='C1'>소파베드/소파스툴</option>
-                    <option value='C4'>1인용리클라이너소파</option>
-                    <option value='C3'>다인용리클라이너소파</option>
-                    <option value='C1.5'>안락의자/빈백</option>
-                    <option value='C1'>서랍/수납장/수납선반</option>
-                    <option value='C1'>책장/책꽂이</option>
-                    <option value='C1'>가벽/파티션</option>
-                    <option value='C1'>욕실수납장</option>
-                    <option value='C1'>책상</option>
-                    <option value='C4'>학생/사무용의자</option>
-                    <option value='C1'>침대/매트리스</option>
-                    <option value='C1'>화장대</option>
-                    <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
-                    <option value='C2'>비키니옷장</option>
-                    <option value='C1.5'>행거</option>
-                    <option value='C1'>식탁</option>
-                    <option value='C3'>식탁세트</option>
-                    <option value='C1'>일반의자/인테리어의자</option>
-                    <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
-                    <option value='C1'>벽거울/전신거울</option>
-                    <option value='C1.5'>탁상거울</option>
-                    <option value='C1'>러그/매트</option>
-                    <option value='C1'>그림/사진/포스터/액자</option>
-                    <option value='C1'>시계</option>
-                    <option value='C1'>냉장고/인덕션/냉정수기</option>
-                    <option value='C1.5'>TV/전기밥솥</option>
+                        <option value='C1'>거실장/TV장</option>
+                        <option value='C2'>일반소파</option>
+                        <option value='C1'>소파베드/소파스툴</option>
+                        <option value='C4'>1인용리클라이너소파</option>
+                        <option value='C3'>다인용리클라이너소파</option>
+                        <option value='C1.5'>안락의자/빈백</option>
+                        <option value='C1'>서랍/수납장/수납선반</option>
+                        <option value='C1'>책장/책꽂이</option>
+                        <option value='C1'>가벽/파티션</option>
+                        <option value='C1'>욕실수납장</option>
+                        <option value='C1'>책상</option>
+                        <option value='C4'>학생/사무용의자</option>
+                        <option value='C1'>침대/매트리스</option>
+                        <option value='C1'>화장대</option>
+                        <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
+                        <option value='C2'>비키니옷장</option>
+                        <option value='C1.5'>행거</option>
+                        <option value='C1'>식탁</option>
+                        <option value='C3'>식탁세트</option>
+                        <option value='C1'>일반의자/인테리어의자</option>
+                        <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
+                        <option value='C1'>벽거울/전신거울</option>
+                        <option value='C1.5'>탁상거울</option>
+                        <option value='C1'>러그/매트</option>
+                        <option value='C1'>그림/사진/포스터/액자</option>
+                        <option value='C1'>시계</option>
+                        <option value='C1'>냉장고/인덕션/냉정수기</option>
+                        <option value='C1.5'>TV/전기밥솥</option>
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
-                <td class="price">80,000 원</td>
                 <td class="total">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             </tr>
             <tr class="options-row">
-                <td colspan="5" class="additional-options">
+                <td colspan="4" class="additional-options">
                     <label>색상 추가:
                         <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost color-cost">+0 원</span>)
@@ -163,11 +160,11 @@
     <script>
         let prices = {
             'C1': 80000,
-        'C1.5': 120000,
-        'C2': 200000,
-        'C3': 300000,
-        'C4': 400000,
-        'C5': 600000,
+            'C1.5': 120000,
+            'C2': 200000,
+            'C3': 300000,
+            'C4': 400000,
+            'C5': 600000,
         };
 
         function addRow() {
@@ -177,45 +174,44 @@
                 <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
-                    <option value='C1'>거실장/TV장</option>
-                    <option value='C2'>일반소파</option>
-                    <option value='C1'>소파베드/소파스툴</option>
-                    <option value='C4'>1인용리클라이너소파</option>
-                    <option value='C3'>다인용리클라이너소파</option>
-                    <option value='C1.5'>안락의자/빈백</option>
-                    <option value='C1'>서랍/수납장/수납선반</option>
-                    <option value='C1'>책장/책꽂이</option>
-                    <option value='C1'>가벽/파티션</option>
-                    <option value='C1'>욕실수납장</option>
-                    <option value='C1'>책상</option>
-                    <option value='C4'>학생/사무용의자</option>
-                    <option value='C1'>침대/매트리스</option>
-                    <option value='C1'>화장대</option>
-                    <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
-                    <option value='C2'>비키니옷장</option>
-                    <option value='C1.5'>행거</option>
-                    <option value='C1'>식탁</option>
-                    <option value='C3'>식탁세트</option>
-                    <option value='C1'>일반의자/인테리어의자</option>
-                    <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
-                    <option value='C1'>벽거울/전신거울</option>
-                    <option value='C1.5'>탁상거울</option>
-                    <option value='C1'>러그/매트</option>
-                    <option value='C1'>그림/사진/포스터/액자</option>
-                    <option value='C1'>시계</option>
-                    <option value='C1'>냉장고/인덕션/냉정수기</option>
-                    <option value='C1.5'>TV/전기밥솥</option>
+                        <option value='C1'>거실장/TV장</option>
+                        <option value='C2'>일반소파</option>
+                        <option value='C1'>소파베드/소파스툴</option>
+                        <option value='C4'>1인용리클라이너소파</option>
+                        <option value='C3'>다인용리클라이너소파</option>
+                        <option value='C1.5'>안락의자/빈백</option>
+                        <option value='C1'>서랍/수납장/수납선반</option>
+                        <option value='C1'>책장/책꽂이</option>
+                        <option value='C1'>가벽/파티션</option>
+                        <option value='C1'>욕실수납장</option>
+                        <option value='C1'>책상</option>
+                        <option value='C4'>학생/사무용의자</option>
+                        <option value='C1'>침대/매트리스</option>
+                        <option value='C1'>화장대</option>
+                        <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
+                        <option value='C2'>비키니옷장</option>
+                        <option value='C1.5'>행거</option>
+                        <option value='C1'>식탁</option>
+                        <option value='C3'>식탁세트</option>
+                        <option value='C1'>일반의자/인테리어의자</option>
+                        <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
+                        <option value='C1'>벽거울/전신거울</option>
+                        <option value='C1.5'>탁상거울</option>
+                        <option value='C1'>러그/매트</option>
+                        <option value='C1'>그림/사진/포스터/액자</option>
+                        <option value='C1'>시계</option>
+                        <option value='C1'>냉장고/인덕션/냉정수기</option>
+                        <option value='C1.5'>TV/전기밥솥</option>
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
-                <td class="price">80,000 원</td>
                 <td class="total">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             `;
             let optionsRow = table.insertRow();
             optionsRow.className = "options-row";
             optionsRow.innerHTML = `
-                <td colspan="5" class="additional-options">
+                <td colspan="4" class="additional-options">
                     <label>색상 추가:
                         <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost color-cost">+0 원</span>)
@@ -241,8 +237,9 @@
         function updatePrice(selectElement) {
             let selectedValue = selectElement.value;
             let row = selectElement.parentNode.parentNode;
-            let priceCell = row.getElementsByClassName('price')[0];
-            priceCell.textContent = prices[selectedValue].toLocaleString() + ' 원';
+            let totalCell = row.getElementsByClassName('total')[0];
+            let price = prices[selectedValue];
+            totalCell.textContent = (price * parseInt(row.getElementsByClassName('quantity')[0].value)).toLocaleString() + ' 원';
         }
 
         function calculateTotal() {
