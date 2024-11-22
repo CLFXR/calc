@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 모델 제작 서비스 가견적 산출</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,12 +12,6 @@
             padding: 0;
             background-color: #F1F1EF;
             font-size: 0.8em; /* 원래 폰트 크기로 유지 */
-        }
-
-        h1 {
-            font-size: 1em; /* 원래 폰트 크기로 유지 */
-            text-align: center;
-            margin: 5px 0;
         }
 
         table {
@@ -33,7 +28,7 @@
         td {
             border: 1px solid #ddd;
             padding: 5px; /* 원래 패딩 유지 */
-            text-align: center;
+            text-align: left; /* 왼쪽 정렬로 변경 */
         }
 
         th {
@@ -51,15 +46,13 @@
             border-top-right-radius: 10px;
         }
 
-        /* 테이블 바디의 첫 번째와 마지막 셀에 라운드 적용 */
-        tr:last-child td:first-child {
-            border-bottom-left-radius: 10px;
+        /* 옵션 행에서 테두리 제거 */
+        .options-row td {
+            border: none; /* 테두리 없애기 */
+            padding: 0; /* 패딩 없애기 */
         }
 
-        tr:last-child td:last-child {
-            border-bottom-right-radius: 10px;
-        }
-
+        /* 추가적인 스타일 */
         .add-row {
             text-align: center;
             margin-top: 5px;
@@ -80,6 +73,7 @@
             cursor: pointer;
             font-size: 0.8em; /* 원래 폰트 크기로 유지 */
             transition: transform 0.2s; /* 호버 효과 부드럽게 */
+            margin-left: 10px; /* 삭제 버튼과 선택 박스 간 간격 추가 */
         }
 
         .remove-row:hover {
@@ -95,10 +89,10 @@
 
         /* 상품군 셀렉트박스 너비 확장 */
         .product-select {
-            width: 180px; /* 필요한 너비로 조정 */
+            width: 160px; /* 삭제 버튼을 위해 너비 조정 */
             padding: 2px; /* 원래 패딩 유지 */
             font-size: 0.8em; /* 원래 폰트 크기로 유지 */
-            text-align: center;
+            text-align: left; /* 왼쪽 정렬로 변경 */
         }
 
         /* 나머지 셀렉트박스는 기존 너비 유지 */
@@ -106,19 +100,28 @@
             width: 80px; /* 원하는 너비로 조정 */
             padding: 2px; /* 원래 패딩 유지 */
             font-size: 0.8em; /* 원래 폰트 크기로 유지 */
-            text-align: center;
+            text-align: left; /* 왼쪽 정렬로 변경 */
         }
 
         .additional-options {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: flex-start; /* 왼쪽 정렬로 변경 */
+            align-items: flex-start;
+            width: 100%;
             margin-top: 5px;
+            flex-wrap: wrap;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
         }
 
         .additional-options label {
             margin-bottom: 3px; /* 원래 마진 유지 */
             font-size: 0.8em; /* 원래 폰트 크기로 유지 */
+            text-align: left; /* 왼쪽 정렬로 변경 */
         }
 
         .additional-cost {
@@ -127,7 +130,7 @@
         }
 
         .option-total-cost {
-            font-size: 1em; /* 원하는 크기로 조정 (예: 1em) */
+            font-size: 1em; /* 원하는 크기로 조정 (예: 1em 또는 필요에 따라 더 크게) */
         }
 
         .price {
@@ -148,13 +151,37 @@
                 margin-right: 0;
                 margin-bottom: 3px; /* 원래 마진 유지 */
                 font-size: 0.8em; /* 원래 폰트 크기로 유지 */
+                text-align: left; /* 왼쪽 정렬로 변경 */
             }
+
+            .options-group {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* 첫 번째 td를 flex 컨테이너로 설정하여 왼쪽 정렬 */
+        td.product-cell {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* 왼쪽 정렬로 변경 */
+        }
+
+        /* 추가적인 정렬을 위한 스타일 */
+        .options-row .additional-options label,
+        .options-row .additional-options span {
+            text-align: left;
+        }
+
+        hr {
+            margin: 10px 0; /* hr의 위아래 여백 조정 */
+            border: none; /* 기본 border 제거 */
+            border-top: 1px solid #ddd; /* 하단 테두리 추가 */
         }
     </style>
 </head>
 
 <body>
-
 
     <table id="productTable">
         <thead>
@@ -162,12 +189,11 @@
                 <th>상품군</th>
                 <th>수량</th>
                 <th>상품 금액</th>
-                <th>🗑️</th> <!-- 삭제 컬럼명을 휴지통 이모티콘으로 변경 -->
             </tr>
         </thead>
         <tbody>
             <tr class="product-row">
-                <td>
+                <td class="product-cell">
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value="C1">거실테이블</option>
                         <option value="C1">거실장/TV장</option>
@@ -199,23 +225,26 @@
                         <option value="C1">냉장고/인덕션/냉정수기</option>
                         <option value="C1.5">TV/전기밥솥</option>
                     </select>
+                    <span class="remove-row" onclick="removeRow(this)">❌</span> <!-- 삭제 버튼 추가 -->
                 </td>
                 <td>
                     <select class="quantity" onchange="updatePrice(this); calculateTotal()"></select>
                 </td>
                 <td class="price">0 원</td>
-                <td><span class="remove-row" onclick="removeRow(this)">X</span></td> <!-- 삭제 버튼을 원래대로 "X"로 변경 -->
             </tr>
             <tr class="options-row">
-                <td colspan="4" class="additional-options">
-                    <label>색상 추가:
-                        <select class="color-addition" onchange="calculateTotal()"></select>
-                        (<span class="additional-cost color-cost">+0 원</span>)
-                    </label>
-                    <label>사이즈 추가:
-                        <select class="size-addition" onchange="calculateTotal()"></select>
-                        (<span class="additional-cost size-cost">+0 원</span>)
-                    </label>
+                <td colspan="3" class="additional-options">
+                    <div class="options-group">
+                        <label>색상 추가:
+                            <select class="color-addition" onchange="calculateTotal()"></select>
+                            (<span class="additional-cost color-cost">+0 원</span>)
+                        </label>
+                        <label>사이즈 추가:
+                            <select class="size-addition" onchange="calculateTotal()"></select>
+                            (<span class="additional-cost size-cost">+0 원</span>)
+                        </label>
+                    </div>
+                    <hr> <!-- 추가된 hr -->
                     <label>옵션 포함 총 금액:
                         <span class="additional-cost total-cost option-total-cost">0 원</span>
                     </label>
@@ -262,7 +291,7 @@
             let newRow = table.insertRow();
             newRow.className = "product-row";
             newRow.innerHTML = `
-                <td>
+                <td class="product-cell">
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value="C1">거실테이블</option>
                         <option value="C1">거실장/TV장</option>
@@ -294,27 +323,30 @@
                         <option value="C1">냉장고/인덕션/냉정수기</option>
                         <option value="C1.5">TV/전기밥솥</option>
                     </select>
+                    <span class="remove-row" onclick="removeRow(this)">❌</span> <!-- 삭제 버튼 추가 -->
                 </td>
                 <td>
                     <select class="quantity" onchange="updatePrice(this); calculateTotal()"></select>
                 </td>
                 <td class="price">0 원</td>
-                <td><span class="remove-row" onclick="removeRow(this)">X</span></td> <!-- 삭제 버튼을 "X"로 유지 -->
             `;
 
             // 옵션 행 추가
             let optionsRow = table.insertRow();
             optionsRow.className = "options-row";
             optionsRow.innerHTML = `
-                <td colspan="4" class="additional-options">
-                    <label>색상 추가:
-                        <select class="color-addition" onchange="calculateTotal()"></select>
-                        (<span class="additional-cost color-cost">+0 원</span>)
-                    </label>
-                    <label>사이즈 추가:
-                        <select class="size-addition" onchange="calculateTotal()"></select>
-                        (<span class="additional-cost size-cost">+0 원</span>)
-                    </label>
+                <td colspan="3" class="additional-options">
+                    <div class="options-group">
+                        <label>색상 추가:
+                            <select class="color-addition" onchange="calculateTotal()"></select>
+                            (<span class="additional-cost color-cost">+0 원</span>)
+                        </label>
+                        <label>사이즈 추가:
+                            <select class="size-addition" onchange="calculateTotal()"></select>
+                            (<span class="additional-cost size-cost">+0 원</span>)
+                        </label>
+                    </div>
+                    <hr> <!-- 추가된 hr -->
                     <label>옵션 포함 총 금액:
                         <span class="additional-cost total-cost option-total-cost">0 원</span>
                     </label>
@@ -337,7 +369,9 @@
         }
 
         function removeRow(element) {
-            let row = element.parentNode.parentNode;
+            let row = element.closest('tr.product-row');
+            if (!row) return;
+
             let optionsRow = row.nextElementSibling; // 옵션 행
             row.remove();
             if (optionsRow && optionsRow.classList.contains('options-row')) {
@@ -403,6 +437,9 @@
                 // 총 금액 업데이트
                 optionsRow.getElementsByClassName('total-cost')[0].textContent = total.toLocaleString() + ' 원';
                 grandTotal += total;
+
+                // "옵션 포함 총 금액" 업데이트
+                optionsRow.getElementsByClassName('option-total-cost')[0].textContent = total.toLocaleString() + ' 원';
 
                 // 추가 비용 업데이트
                 optionsRow.getElementsByClassName('color-cost')[0].textContent = `+${colorCost.toLocaleString()} 원`;
