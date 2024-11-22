@@ -7,119 +7,71 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 5px; /* 여백을 줄임 */
             padding: 0;
             background-color: #F1F1EF;
+            font-size: 0.8em; /* 기본 폰트 크기 작게 설정 */
         }
 
         h1 {
+            font-size: 1em; /* 제목 크기 줄임 */
             text-align: center;
-            color: #333;
+            margin: 5px 0; /* 여백 조정 */
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px; /* 패딩을 줄임 */
+            text-align: center;
         }
 
         th {
             background-color: #35C5F0;
             color: white;
-            font-weight: bold;
-            padding: 10px;
-        }
-
-        td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            background-color: white;
-            font-size: 0.95em;
-        }
-
-        .price, .total, .additional-cost {
-            font-weight: bold;
-        }
-
-        .reply-row {
-            background-color: #f4f4f4;
-        }
-
-        .total-row td {
-            font-weight: bold;
-            background-color: #35C5F0;
-            color: white;
-            text-align: right;
-        }
-
-        input[type="number"] {
-            padding: 5px;
-            width: 50px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 3px;
         }
 
         .add-row {
-            margin-top: 20px;
             text-align: center;
+            margin-top: 5px; /* 추가 버튼 여백 조정 */
         }
 
         .add-row button {
-            padding: 10px 20px;
+            padding: 5px;
             background-color: #35C5F0;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
-        }
-
-        .add-row button:hover {
-            background-color: #2ca1d3;
+            font-size: 0.8em; /* 버튼 폰트 크기 조정 */
         }
 
         .remove-row {
             color: red;
             cursor: pointer;
+            font-size: 0.8em; /* 삭제 버튼 크기 조정 */
         }
 
         #grandTotal {
-            font-size: 1.2em;
+            font-weight: bold;
+            font-size: 0.9em; /* 전체 금액 폰트 크기 조정 */
         }
 
-        .additional-label {
-            font-size: 0.8em;
-        }
-
-        /* 추가 - 모바일 스타일 */
-        @media (max-width: 600px) {
-            table, td, th {
-                font-size: 0.8em;  /* 폰트 크기 조정 */
-            }
-
-            td {
-                padding: 8px; /* 셀 패딩 줄이기 */
-            }
-
-            input[type="number"] {
-                width: 40px; /* 입력 박스 크기 줄여서 가로 폭 확보 */
-            }
-
-            .add-row button {
-                padding: 8px 16px; /* 버튼 크기 조정 */
-            }
+        input[type="number"] {
+            width: 30px; /* 입력 박스 사이즈 줄임 */
+            padding: 2px; /* 패딩 줄임 */
+            font-size: 0.8em; /* 폰트 크기 조정 */
         }
     </style>
 </head>
 <body>
 
-    <h1>3D 모델 제작 서비스 가견적 산출</h1>
-    <h5>Note: 실제 견적과 차이가 발생할 수 있으니 참고해 주세요.</h5>
+    <h1>가견적 산출</h1>
     
     <table id="productTable">
         <thead>
@@ -136,115 +88,42 @@
                 <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
-                        <option value='C1'>거실장/TV장</option>
                         <option value='C2'>일반소파</option>
-                        <option value='C1'>소파베드/소파스툴</option>
-                        <option value='C4'>1인용리클라이너소파</option>
-                        <option value='C3'>다인용리클라이너소파</option>
-                        <option value='C1.5'>안락의자/빈백</option>
-                        <option value='C1'>서랍/수납장/수납선반</option>
-                        <option value='C1'>책장/책꽂이</option>
-                        <option value='C1'>가벽/파티션</option>
-                        <option value='C1'>욕실수납장</option>
-                        <option value='C1'>책상</option>
-                        <option value='C4'>학생/사무용의자</option>
-                        <option value='C1'>침대/매트리스</option>
-                        <option value='C1'>화장대</option>
-                        <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
-                        <option value='C2'>비키니옷장</option>
-                        <option value='C1.5'>행거</option>
-                        <option value='C1'>식탁</option>
-                        <option value='C3'>식탁세트</option>
-                        <option value='C1'>일반의자/인테리어의자</option>
-                        <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
-                        <option value='C1'>벽거울/전신거울</option>
-                        <option value='C1.5'>탁상거울</option>
-                        <option value='C1'>러그/매트</option>
-                        <option value='C1'>그림/사진/포스터/액자</option>
-                        <option value='C1'>시계</option>
-                        <option value='C1'>냉장고/인덕션/냉정수기</option>
-                        <option value='C1.5'>TV/전기밥솥</option>
+                        <option value='C4'>1인용소파</option>
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
                 <td class="price">80,000 원</td>
                 <td class="total">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
-            </tr>
-            <tr class="reply-row">
-                <td colspan="5">
-                    <label class="additional-label" style="margin-right: 10px;">색상 추가: 
-                        <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()"> 
-                        (<span class="additional-cost color-cost">+0 원</span>)
-                    </label>
-                    <label class="additional-label" style="margin-left: 10px;">사이즈 추가: 
-                        <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()"> 
-                        (<span class="additional-cost size-cost">+0 원</span>)
-                    </label>
-                </td>
             </tr>
         </tbody>
     </table>
 
     <div class="add-row">
-        <button onclick="addRow()">+ 상품 추가</button>
+        <button onclick="addRow()">+ 추가</button>
     </div>
 
-    <div class="total-row">
-        <table>
-            <tr>
-                <td>예상 견적가:</td>
-                <td id="grandTotal">80,000 원</td>
-            </tr>
-        </table>
+    <div>
+        예상 견적가: <span id="grandTotal">80,000 원</span>
     </div>
 
     <script>
-        const prices = {
+        let prices = {
             'C1': 80000,
-            'C1.5': 120000,
             'C2': 200000,
-            'C3': 300000,
             'C4': 400000,
-            'C5': 600000,
         };
 
         function addRow() {
-            const table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
-            
-            const newRow = table.insertRow();
+            let table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow();
             newRow.innerHTML = `
-                <td style="background-color: white;">
+                <td>
                     <select class="product-select" onchange="updatePrice(this); calculateTotal();">
                         <option value='C1'>거실테이블</option>
-                        <option value='C1'>거실장/TV장</option>
                         <option value='C2'>일반소파</option>
-                        <option value='C1'>소파베드/소파스툴</option>
-                        <option value='C4'>1인용리클라이너소파</option>
-                        <option value='C3'>다인용리클라이너소파</option>
-                        <option value='C1.5'>안락의자/빈백</option>
-                        <option value='C1'>서랍/수납장/수납선반</option>
-                        <option value='C1'>책장/책꽂이</option>
-                        <option value='C1'>가벽/파티션</option>
-                        <option value='C1'>욕실수납장</option>
-                        <option value='C1'>책상</option>
-                        <option value='C4'>학생/사무용의자</option>
-                        <option value='C1'>침대/매트리스</option>
-                        <option value='C1'>화장대</option>
-                        <option value='C1'>드레스룸/옷장/스탠드형옷걸이</option>
-                        <option value='C2'>비키니옷장</option>
-                        <option value='C1.5'>행거</option>
-                        <option value='C1'>식탁</option>
-                        <option value='C3'>식탁세트</option>
-                        <option value='C1'>일반의자/인테리어의자</option>
-                        <option value='C1'>스툴/벤치/수납스툴/수납벤치</option>
-                        <option value='C1'>벽거울/전신거울</option>
-                        <option value='C1.5'>탁상거울</option>
-                        <option value='C1'>러그/매트</option>
-                        <option value='C1'>그림/사진/포스터/액자</option>
-                        <option value='C1'>시계</option>
-                        <option value='C1'>냉장고/인덕션/냉정수기</option>
-                        <option value='C1.5'>TV/전기밥솥</option>
+                        <option value='C4'>1인용소파</option>
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
@@ -252,67 +131,34 @@
                 <td class="total">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             `;
-
-            const sizeColorRow = table.insertRow();
-            sizeColorRow.className = "reply-row"; 
-            sizeColorRow.innerHTML = `
-                <td colspan="5">
-                    <label class="additional-label" style="margin-right: 10px;">컬러 추가: 
-                        <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()"> 
-                        (<span class="additional-cost color-cost">+0 원</span>)
-                    </label>
-                    <label class="additional-label" style="margin-left: 10px;">사이즈 추가: 
-                        <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()"> 
-                        (<span class="additional-cost size-cost">+0 원</span>)
-                    </label>
-                </td>
-            `;
-
             calculateTotal();
         }
 
         function removeRow(element) {
-            const row = element.parentNode.parentNode;
-            const nextRow = row.nextElementSibling;
-            nextRow.remove();
+            let row = element.parentNode.parentNode;
             row.remove();
             calculateTotal();
         }
 
         function updatePrice(selectElement) {
-            const selectedValue = selectElement.value;
-            const row = selectElement.parentNode.parentNode;
-            const priceCell = row.getElementsByClassName('price')[0];
-            const price = prices[selectedValue];
-            priceCell.textContent = price.toLocaleString() + ' 원';
+            let selectedValue = selectElement.value;
+            let row = selectElement.parentNode.parentNode;
+            let priceCell = row.getElementsByClassName('price')[0];
+            priceCell.textContent = prices[selectedValue].toLocaleString() + ' 원';
         }
 
         function calculateTotal() {
             let grandTotal = 0;
-            const rows = document.getElementById('productTable').getElementsByTagName('tbody')[0].rows;
+            let rows = document.getElementById('productTable').getElementsByTagName('tbody')[0].rows;
 
-            for (let i = 0; i < rows.length; i += 2) {
-                const row = rows[i];
-                const replyRow = rows[i + 1];
+            for (let row of rows) {
+                let quantity = parseInt(row.getElementsByClassName('quantity')[0].value);
+                let productSelect = row.getElementsByClassName('product-select')[0];
+                let selectedValue = productSelect.value;
+                let price = prices[selectedValue];
 
-                const quantity = parseInt(row.getElementsByClassName('quantity')[0].value);
-                const colorAddition = parseInt(replyRow.getElementsByClassName('color-addition')[0].value);
-                const sizeAddition = parseInt(replyRow.getElementsByClassName('size-addition')[0].value);
-                const productSelect = row.getElementsByClassName('product-select')[0];
-                const selectedValue = productSelect.value;
-                const price = prices[selectedValue];
-
-                const colorCost = colorAddition * (price * 0.1);
-                const sizeCost = sizeAddition * (price * 0.25);
-
-                const total = (quantity * price) + colorCost + sizeCost;
-
-                row.getElementsByClassName('price')[0].textContent = price.toLocaleString() + ' 원';
+                let total = quantity * price;
                 row.getElementsByClassName('total')[0].textContent = total.toLocaleString() + ' 원';
-
-                replyRow.getElementsByClassName('color-cost')[0].textContent = `+${colorCost.toLocaleString()} 원`;
-                replyRow.getElementsByClassName('size-cost')[0].textContent = `+${sizeCost.toLocaleString()} 원`;
-
                 grandTotal += total;
             }
 
