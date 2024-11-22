@@ -49,6 +49,7 @@
             border-radius: 3px;
             cursor: pointer;
             font-size: 0.8em;
+            font-weight: bold; /* 버튼 텍스트를 굵게 설정 */
         }
 
         .remove-row {
@@ -60,7 +61,7 @@
         #grandTotal {
             font-weight: bold;
             font-size: 0.9em;
-            text-align: center;  /* 가운데 정렬 추가 */
+            text-align: center; /* 가운데 정렬 */
             margin-top: 10px;
         }
 
@@ -99,6 +100,7 @@
                 margin-bottom: 3px;
             }
         }
+
     </style>
 </head>
 <body>
@@ -150,7 +152,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number" class="quantity" value="1" min="1" oninput="updatePrice(this); calculateTotal()">
+                    <input type="number" class="quantity" value="1" min="1" oninput="calculateTotal();">
                 </td>
                 <td class="price">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
@@ -231,7 +233,9 @@
                         <option value='C1.5'>TV/전기밥솥</option>
                     </select>
                 </td>
-                <td><input type="number" class="quantity" value="1" min="1" oninput="updatePrice(this); calculateTotal()"></td>
+                <td>
+                    <input type="number" class="quantity" value="1" min="1" oninput="calculateTotal();">
+                </td>
                 <td class="price">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             `;
@@ -272,10 +276,9 @@
             let selectedValue = selectElement.value;
             let row = selectElement.parentNode.parentNode;
             let priceCell = row.getElementsByClassName('price')[0];
-            let quantity = row.getElementsByClassName('quantity')[0].value; // 현재 수량 가져오기
             let price = prices[selectedValue] || 0;
             priceCell.textContent = price.toLocaleString() + ' 원';
-            calculateTotal();
+            calculateTotal(); // 가격 변경 시 총합 계산
         }
 
         function calculateTotal() {
