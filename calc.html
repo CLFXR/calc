@@ -116,6 +116,7 @@
         <thead>
             <tr>
                 <th>상품군</th>
+                <th>수량</th>
                 <th>색상 추가</th>
                 <th>사이즈 추가</th>
                 <th>삭제</th>
@@ -155,7 +156,7 @@
                         <option value='C1'>냉장고/인덕션/냉정수기</option>
                         <option value='C1.5'>TV/전기밥솥</option>
                     </select>
-                    <input type="number" class="quantity" value="1" min="1" oninput="updatePrice(this); calculateTotal();">
+                    <input type="number" class="quantity" value="1" min="1" oninput="calculateTotal();">
                     (<span class="price">80,000 원</span>) <!-- 개당 가격 표시 -->
                 </td>
                 <td>
@@ -167,6 +168,13 @@
                     (<span class="additional-cost size-cost">+0 원</span>)
                 </td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
+            </tr>
+            <tr class="options-row">
+                <td colspan="5" class="additional-options">
+                    <label>총 금액:
+                        <span class="additional-cost total-cost">0 원</span>
+                    </label>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -260,8 +268,10 @@
             let row = selectElement.parentNode.parentNode;
             let priceCell = row.getElementsByClassName('price')[0];
             let price = prices[selectedValue] || 0;
+
+            // 개당 가격 업데이트
             priceCell.textContent = price.toLocaleString() + ' 원';
-            calculateTotal(); // 가격 변경 시 총합을 재계산
+            calculateTotal(); // 가격 변경 시 총합 재계산
         }
 
         function calculateTotal() {
