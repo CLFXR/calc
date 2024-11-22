@@ -90,7 +90,6 @@
             <tr>
                 <th>상품군</th>
                 <th>수량</th>
-                <th>옵션 가격</th>
                 <th>상품 금액</th>
                 <th>삭제</th>
             </tr>
@@ -131,12 +130,11 @@
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
-                <td class="total-option">0 원</td>
                 <td class="total-price">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             </tr>
             <tr class="options-row">
-                <td colspan="5" class="additional-options">
+                <td colspan="4" class="additional-options">
                     <label>색상 추가:
                         <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost color-cost">+0 원</span>)
@@ -145,6 +143,7 @@
                         <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost size-cost">+0 원</span>)
                     </label>
+                    <span class="total-amount">총 금액: 80,000 원</span> <!-- 총 금액 표시 추가 -->
                 </td>
             </tr>
         </tbody>
@@ -206,14 +205,13 @@
                     </select>
                 </td>
                 <td><input type="number" class="quantity" value="1" min="1" oninput="calculateTotal()"></td>
-                <td class="total-option">0 원</td>
                 <td class="total-price">80,000 원</td>
                 <td><span class="remove-row" onclick="removeRow(this)">X</span></td>
             `;
             let optionsRow = table.insertRow();
             optionsRow.className = "options-row";
             optionsRow.innerHTML = `
-                <td colspan="5" class="additional-options">
+                <td colspan="4" class="additional-options">
                     <label>색상 추가:
                         <input type="number" class="color-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost color-cost">+0 원</span>)
@@ -222,6 +220,7 @@
                         <input type="number" class="size-addition" value="0" min="0" oninput="calculateTotal()">
                         (<span class="additional-cost size-cost">+0 원</span>)
                     </label>
+                    <span class="total-amount">총 금액: 80,000 원</span> <!-- 총 금액 표시 추가 -->
                 </td>
             `;
 
@@ -268,8 +267,11 @@
 
                 let total = (quantity * price) + colorCost + sizeCost;
 
-                row.getElementsByClassName('total-option')[0].textContent = `+${(colorCost + sizeCost).toLocaleString()} 원`; // 옵션 총 가격
-                row.getElementsByClassName('total-price')[0].textContent = total.toLocaleString() + ' 원'; // 최종 가격
+                // 옵션 금액과 상품 금액을 합산하여 표시
+                let totalAmount = total.toLocaleString();
+                optionsRow.getElementsByClassName('total-amount')[0].textContent = `총 금액: ${totalAmount} 원`; // 최종 가격
+
+                row.getElementsByClassName('total-price')[0].textContent = (quantity * price).toLocaleString() + ' 원'; // 상품 금액
                 grandTotal += total;
             }
 
