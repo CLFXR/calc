@@ -10,32 +10,55 @@
             font-family: Arial, sans-serif;
             margin: 5px;
             padding: 0;
-            /* background-color: #F1F1EF; */
-            font-size: 0.96em; /* 기존 0.8em에서 약 1.2배 증가 */
+            background-color: #F1F1EF;
+            font-size: 0.8em; /* 원래 폰트 크기로 복원 */
         }
 
         h1 {
-            font-size: 1.2em; /* 기존 1em에서 약 1.2배 증가 */
+            font-size: 1em; /* 원래 폰트 크기로 복원 */
             text-align: center;
             margin: 5px 0;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate; /* border-radius 적용을 위해 separate로 변경 */
+            border-spacing: 0; /* 셀 간 간격 제거 */
             margin-top: 5px;
+            border: 1px solid #ddd; /* 테이블 외곽선 추가 */
+            border-radius: 10px; /* 테이블 모서리에 라운드 적용 */
+            overflow: hidden; /* 라운드가 잘 적용되도록 설정 */
         }
 
         th,
         td {
             border: 1px solid #ddd;
-            padding: 8px; /* 기존 5px에서 약 1.6배 증가 */
+            padding: 5px; /* 원래 패딩으로 복원 */
             text-align: center;
         }
 
         th {
             background-color: #35C5F0;
             color: white;
+            border-bottom: none; /* 테이블 헤더가 라운드에 잘 맞도록 조정 */
+        }
+
+        /* 테이블 헤더의 첫 번째와 마지막 셀에 라운드 적용 */
+        th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        /* 테이블 바디의 첫 번째와 마지막 셀에 라운드 적용 */
+        tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+
+        tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
         }
 
         .add-row {
@@ -44,24 +67,24 @@
         }
 
         .add-row button {
-            padding: 6px 10px; /* 기존 5px에서 약 1.2배 증가 */
+            padding: 5px;
             background-color: #35C5F0;
             color: white;
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            font-size: 0.96em; /* 기존 0.8em에서 약 1.2배 증가 */
+            font-size: 0.8em; /* 원래 폰트 크기로 복원 */
         }
 
         .remove-row {
             color: red;
             cursor: pointer;
-            font-size: 1em; /* 기존 0.8em에서 약 1.25배 증가 */
+            font-size: 0.8em; /* 원래 폰트 크기로 복원 */
         }
 
         #grandTotal {
             font-weight: bold;
-            font-size: 1.8em; /* 기존 1.5em에서 약 1.2배 증가 */
+            font-size: 1.5em; /* 원래 폰트 크기로 복원 */
             text-align: center;
             margin-top: 10px;
         }
@@ -69,16 +92,16 @@
         /* 상품군 셀렉트박스 너비 확장 */
         .product-select {
             width: 180px; /* 필요한 너비로 조정 */
-            padding: 4px; /* 기존 2px에서 약 2배 증가 */
-            font-size: 1em; /* 기존 0.96em에서 약 1.04배 증가 */
+            padding: 2px; /* 원래 패딩으로 복원 */
+            font-size: 0.8em; /* 원래 폰트 크기로 복원 */
             text-align: center;
         }
 
         /* 나머지 셀렉트박스는 기존 너비 유지 */
         select:not(.product-select) {
-            width: 80px; /* 기존 60px에서 80px으로 확장 */
-            padding: 4px; /* 기존 2px에서 2배 증가 */
-            font-size: 1em; /* 기존 0.96em에서 약 1.04배 증가 */
+            width: 80px; /* 원하는 너비로 조정 */
+            padding: 2px; /* 원래 패딩으로 복원 */
+            font-size: 0.8em; /* 원래 폰트 크기로 복원 */
             text-align: center;
         }
 
@@ -90,21 +113,21 @@
         }
 
         .additional-options label {
-            margin-bottom: 4px; /* 기존 3px에서 약 1.3배 증가 */
-            font-size: 1em; /* 기존 0.96em에서 약 1.04배 증가 */
+            margin-bottom: 3px; /* 원래 마진으로 복원 */
+            font-size: 0.8em; /* 원래 폰트 크기로 복원 */
         }
 
         .additional-cost {
             font-weight: bold;
-            font-size: 1em; /* 기존 0.84em에서 약 1.19배 증가 */
+            font-size: 0.7em; /* 원래 폰트 크기로 복원 */
         }
 
         .price {
-            font-size: 1em; /* 기존 0.84em에서 약 1.19배 증가 */
+            font-size: 0.7em; /* 원래 폰트 크기로 복원 */
         }
 
         .total-cost {
-            font-size: 1em; /* 기존 0.84em에서 약 1.19배 증가 */
+            font-size: 0.7em; /* 원래 폰트 크기로 복원 */
         }
 
         @media (max-width: 500px) {
@@ -115,14 +138,17 @@
 
             .additional-options label {
                 margin-right: 0;
-                margin-bottom: 4px; /* 기존 3px에서 약 1.3배 증가 */
-                font-size: 1em; /* 기존 0.96em에서 약 1.04배 증가 */
+                margin-bottom: 3px; /* 원래 마진으로 복원 */
+                font-size: 0.8em; /* 원래 폰트 크기로 복원 */
             }
         }
     </style>
 </head>
 
 <body>
+
+    <h1>3D 모델 제작 서비스 가견적 산출</h1>
+
     <table id="productTable">
         <thead>
             <tr>
