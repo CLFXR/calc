@@ -59,10 +59,9 @@
 
         #grandTotal {
             font-weight: bold;
-            font-size: 1em;
-            text-align: center; /* 텍스트 가운데 정렬 */
+            font-size: 0.9em;
+            text-align: center;  /* 가운데 정렬 추가 */
             margin-top: 10px;
-            margin: 0 auto; /* 세로 중앙 정렬을 위해 여백 필요 시 조정 */
         }
 
         input[type="number"] {
@@ -104,7 +103,8 @@
 </head>
 <body>
 
-   
+    <h1>가견적 산출</h1>
+    
     <table id="productTable">
         <thead>
             <tr>
@@ -272,9 +272,10 @@
             let selectedValue = selectElement.value;
             let row = selectElement.parentNode.parentNode;
             let priceCell = row.getElementsByClassName('price')[0];
+            let quantity = row.getElementsByClassName('quantity')[0].value; // 현재 수량 가져오기
             let price = prices[selectedValue] || 0;
             priceCell.textContent = price.toLocaleString() + ' 원';
-            calculateTotal(); // 가격 변경 시 총합 계산
+            calculateTotal();
         }
 
         function calculateTotal() {
@@ -285,7 +286,7 @@
                 let row = rows[i];
                 let optionsRow = rows[i + 1];
 
-                // 수량, 색상 추가, 사이즈 추가 입력값 가져오기
+                // 수량 입력값 가져오기
                 let quantityInput = row.getElementsByClassName('quantity')[0];
                 let quantity = parseInt(quantityInput.value) || 0;
 
